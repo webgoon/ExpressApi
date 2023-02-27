@@ -4,7 +4,8 @@
   "description": "This is a Powerful Express API set up using Sequelize and PostGres DB",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon bin/run | bunyan -o short"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,9 @@
   "bugs": {
     "url": "https://github.com/webgoon/ExpressApi/issues"
   },
-  "homepage": "https://github.com/webgoon/ExpressApi#readme"
+  "homepage": "https://github.com/webgoon/ExpressApi#readme",
+  "dependencies": {
+    "bunyan": "^1.8.15",
+    "express": "^4.18.2"
+  }
 }
