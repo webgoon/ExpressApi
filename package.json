@@ -1,0 +1,24 @@
+{
+  "name": "expressapi",
+  "version": "1.0.0",
+  "description": "This is a Powerful Express API set up using Sequelize and PostGres DB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webgoon/ExpressApi.git"
+  },
+  "keywords": [
+    "express",
+    "api",
+    "postrgress"
+  ],
+  "author": "Benjamin Carter <webgoonie>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webgoon/ExpressApi/issues"
+  },
+  "homepage": "https://github.com/webgoon/ExpressApi#readme"
+}
