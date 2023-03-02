@@ -22,7 +22,7 @@ For Power Shell:
 $env:PORT=5000
 ```
 
-For Bash 
+For Bash
 ```sh
 (Windows): export PORT=5000
 ```
