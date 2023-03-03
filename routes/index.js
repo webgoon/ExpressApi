@@ -3,6 +3,7 @@ const router = express.Router();
 
 const todosRoute = require('./todos');
 const usersRoute = require('./users');
+const employeesRoute = require('./employees')
 
 module.exports = (config) => {
 
@@ -12,6 +13,7 @@ module.exports = (config) => {
 
   router.use('/todo', todosRoute(config));
   router.use('/user', usersRoute(config));
+  router.use('/employee', employeesRoute(config));
 
   return router;
 };

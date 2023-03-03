@@ -1,16 +1,17 @@
 const express = require('express')
 const router = express.Router()
 
-const UserService = require('../../services/UserService')
+
+const EmployeeService = require('../../services/EmployeeService')
 
 module.exports = (config) => {
 
-  const userService = new UserService(config.postgres.client)
+  const employeeService = new EmployeeService(config.postgres.client)
 
   router.post('/create', async(req, res) => {
     try {
-      const user = await userService.createUser(req.body)
-      res.send(user)
+      const employee = await employeeService.createEmployee(req.body)
+      res.send(employee)
     } catch (error) {
       return next(err)
     }
@@ -18,31 +19,27 @@ module.exports = (config) => {
 
   router.get('/findOne', async (req, res, next) => {
     try{
-      const user = await userService.findOneUser()
-      // res.send(user)
-      res.send({"getterFunc":user.firstName, 
-                "OG": user.getDataValue('firstName')
-              })
+      const employee = await employeeService.findOneEmployee()
+      res.send(employee)
     }catch(err){
-      console.log('err', err)
       return next(err)
     }
   });
 
   router.get('/findbypk', async (req, res, next) => {
     try{
-      const user = await userService.findOneByPk()
-      res.send(user)
+      const employee = await employeeService.findOneByPk()
+      res.send(employee)
     }catch(err){
       return next(err)
     }
   });
 
   router.get('/all', async (req, res) => {
-    console.log('hit /all', req.body)
+    console.log('Employee All Get request', req.body)
     try{
-      const userList = await userService.getAllUsers();
-      res.send(userList)
+      const employeeList = await employeeService.getAllEmployees();
+      res.send(employeeList)
     }catch(err){
       return next(err)
     }
@@ -50,8 +47,8 @@ module.exports = (config) => {
 
   router.get('/all/attributes', async (req, res) => {
     try{
-      const userList = await userService.getAllUsersAttributes();
-      res.send(userList)
+      const employeeList = await employeeService.getAllEmployeesAttributes();
+      res.send(employeeList)
     }catch(err){
       return next(err)
     }
@@ -60,8 +57,8 @@ module.exports = (config) => {
 
   router.get('/all/where', async (req, res) => {
     try{
-      const userList = await userService.getAllUsersWhere()
-      res.send(userList)
+      const employeeList = await employeeService.getAllEmployeesWhere()
+      res.send(employeeList)
     }catch(err){
       return next(err)
     }
@@ -69,8 +66,8 @@ module.exports = (config) => {
 
   router.post('/update', async (req, res, next) => {
     try{
-      const user = await userService.updateUser()
-      res.send(user)
+      const employee = await employeeService.updateEmployee()
+      res.send(employee)
     }catch(err){
       return next(err)
     }
@@ -78,8 +75,8 @@ module.exports = (config) => {
 
   router.post('/delete', async (req, res) => {
     try{
-      const user = await userService.deleteUser()
-      res.send(user)
+      const employee = await employeeService.deleteEmployee()
+      res.send(employee)
     }catch(err){
       return next(err)
     }
@@ -87,8 +84,8 @@ module.exports = (config) => {
 
   router.post('/deleteContact', async (req, res) => {
     try{
-      const contact = await contactService.deleteContact()
-      res.send(contact)
+      const employeecontact = await employeecontactService.deleteContact()
+      res.send(employeecontact)
     }catch(err){
       return next(err)
     }
@@ -96,8 +93,8 @@ module.exports = (config) => {
 
   router.post('/follow', async (req, res) => {
     try{
-      const followedList = await userService.followUser()
-      res.send(followedList)
+      const employeefollowedList = await employeeService.followEmployee()
+      res.send(employeefollowedList)
     }catch(err){
       return next(err)
     }
