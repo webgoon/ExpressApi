@@ -45,12 +45,16 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             unique: true
         },
-        token:{
+        uid:{
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
         phone: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        email: {
             type: DataTypes.STRING,
             allowNull: false
         }
