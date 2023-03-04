@@ -39,9 +39,12 @@ class UserService {
     }
   }
 
-  async findOneUser(){
+
+
+  async findOneUser({UserId}){
+    console.log('Line 43 findOneUser: ', UserId)
     try {
-      const user = await this.models.User.findOne({where: {id: 1}});
+      const user = await this.models.User.findOne({where: {"id": UserId}});
       return user;
     } catch (err) {
       console.log('err', err)
@@ -52,11 +55,12 @@ class UserService {
   }
 
   //Find one by Primary Key
-  async findOnebyPk(){
+  async findOnebyPk({UserId}){
+    console.log('findOnebyPk: ', UserId)
     try {
-      const user = await this.models.User.findOne({where: {id: 2}});
+      const user = await this.models.User.findOne({where: {id: UserId}});
       return user
-      return {'success': false, 'message': `${err}`}
+      //return {'success': false, 'message': `${err}`}
     } catch (err) {
       return err
        //return {'success': false, 'message': `${err}`}
@@ -164,18 +168,24 @@ class UserService {
     }
   }
 
-  async followUser(){
+  async followUser({UserId, FollowId}){
+    console.log('Line 170 followUser UserId', UserId)
+    console.log('Line 171 followUser FollowId', FollowId)
+    
     try {
-      const currentUser = await this.findOneUser();
-      const toFollowUser = await this.models.User.findOne({where: {firstName: 'tom'}})
-      currentUser.addUser(toFollowUser);
+      const currentUser = await this.findOneUser({UserId});
+      //const currentUser = await this.models.User.findOne({where: {"id": UserId}});
+      const toFollowUser = await this.models.User.findOne({where: {"id": FollowId}})
+      currentUser.addUser(toFollowUser);              //addUser is a special method created automatically when we manually create association
       return currentUser.getUser()
     } catch (err) {
-      //return err;
-      return {'success': false, 'message': `${err}`}
+      return err;
+      //return {'success': false, 'message': `${err}`}
     }
   }
 
+
 }
+
 
 module.exports = UserService
