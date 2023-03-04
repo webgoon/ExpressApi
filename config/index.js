@@ -20,6 +20,9 @@ module.exports = {
         port: 5432,
         database: 'apiexpressdbDev',
         dialect: 'postgres',
+        dialectOptions: {
+          bigNumberStrings: true
+        },
         username: 'postgres',
         password: 'admin',
         logging: msg => getLogger(name, version, 'debug').info(msg),
